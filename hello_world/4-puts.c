@@ -4,8 +4,7 @@
  */
 int main(void)
 {
-  //print by puts
   puts("\"Programming is like building a multilingual puzzle");
-
+  /*print with puts */
 	return (0);
 }
