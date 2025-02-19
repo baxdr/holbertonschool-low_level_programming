@@ -6,8 +6,7 @@
  */
 int _islower(int c)
 {
-	char ch;
-	if (ch >95)
+	if (c >95)
 		return 1;
 	else 
 		return 0;
