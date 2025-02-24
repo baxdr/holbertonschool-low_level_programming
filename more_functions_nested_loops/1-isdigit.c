@@ -6,7 +6,7 @@
  */
 int _isdigit(int c)
 {
-	int digit = '0';
+	char digit = '0';
 	int isdigit = 0;
 
 	for (digit = '0' ; digit <= '9' ; digit++)
