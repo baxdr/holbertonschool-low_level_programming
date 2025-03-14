@@ -103,7 +103,7 @@ int main(int argc, char **argv)
 
     x = _strlen(argv[1]) + _strlen(argv[2]);
     r = big_multiply(argv[1], argv[2]);
-    
+
     /* Print the result */
     c = 0;
     a = 0;
