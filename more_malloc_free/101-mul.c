@@ -1,88 +1,124 @@
-#include <stdlib.h>
-#include "main.h"
+#include <stddef.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-int _atoi(char *s);
-int _strlen(char *s);
+/* int _putchar(char c);*/
+int _digit(char *str);
+int _strlen(char *str);
+void _errors(void);
+
+/* By Abdelghni Hamanar */
 /**
- * main - function with two arguments
- * @argc: argument count
- * @argv: argument value
- *
- * Description: program that multiplies two positive numbers
- * Return: value
+ * main - Entry point
+ * @argc: variable
+ * @argv: variable
+ * Return: void
  */
+
 int main(int argc, char *argv[])
 {
-	int count, len1, len2, temp1, temp2, *array, *result;
+	char *s1, *s2;
+	int len1, len2, len, *result, a = 0, digit1, digit2, carry, i;
 
-	if (argc != 3)
+	s1 = argv[1];
+	s2 = argv[2];
+	if (argc != 3 || !_digit(s1) || !_digit(s2))
+		_errors();
+
+	len1 = _strlen(s1);
+	len2 = _strlen(s2);
+	len = len1 + len2 + 1;
+	result = malloc(sizeof(int) * len);
+	if (!result)
+		return (1);
+
+	for (i = 0; i <= len1 + len2; i++)
+		result[i] = 0;
+
+	for (len1 = len1 - 1; len1 >= 0; len1--)
 	{
-		printf("Error\n");
-		exit (98);
+		digit1 = s1[len1] - '0';
+		carry = 0;
+		for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
+		{
+			digit2 = s2[len2] - '0';
+			carry +=  result[len1 + len2 + 1] + (digit1 * digit2);
+			result[len1 + len2 + 1] =  carry % 10;
+			carry /= 10;
+		}
+
+		if (carry > 0)
+			result[len1 + len2 + 1] += carry;
 	}
 
-	len1 = _strlen(argv[1]);
-	len2 = _strlen(argv[2]);
-	t_len = len1 + len2 - 1;
-
-	array = malloc(sizeof(char) * (len1 + len2 + 1));
-	if (array == NULL)
-		return (NULL);
-
-	len1 -= 1;
-	len2 -= 1;
-	for (count = 1; argv[count] != '\0', count++)
+	for (i = 0; i < len - 1; i++)
 	{
-		for (; argv[1][len1]; len1--)
-		{
-			temp1 = argv[1][len1 - 1] - '0';;
-		}
-		for (; argv[2][len2]; len2--)
-		{
-			temp2 = argv[2][len2 - 1] - '0';
-		}
-		for (; array[t_len] > 0
-		if ((temp1 * temp2) > 9)
-			array[
+		if (result[i])
+			a = 1;
+
+		if (a)
+			printf("%d", result[i]);
 	}
+
+	if (!a)
+		printf("0");
+
+	printf("\n");
+	free(result);
+	return (0);
 }
 
-int _atoi(char *s)
+
+/* By Abdelghni Hamanar */
+/**
+ * _digit - Entry point
+ * @str: variable
+ * Return: void
+ */
+
+int _digit(char *str)
 {
-	int i, sign, numb;
+	int i = 0;
 
-	i = 0;
-	sign = 1;
-	numb = 0;
-
-	while (s[i] != '\0')
+	while (str[i] != '\0')
 	{
-		if (s[i] == '-')
-			sign *= -1;
-		if (s[i] >= '0' && s[i] <= '9')
-		{
-			while (s[i] >= '0' && s[i] <= '9')
-			{
-				numb = (s[i] - '0') * sign + numb * 10;
-				i++;
-			}
-			break;
-		}
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+
 		i++;
 	}
-	return (numb);
+
+	return (1);
 }
 
-int _strlen(char *s)
-{
-	int i;
 
-	i = 0;
-	while (*(s + i) != '\0')
-	{
+/* By Abdelghni Hamanar */
+/**
+ * _errors - Entry point
+ * Return: void
+ */
+
+void _errors(void)
+{
+	printf("Error\n");
+	exit(98);
+}
+
+
+/* By Abdelghni Hamanar */
+/**
+ * _strlen - Entry point
+ * @str: variable
+ * Return: len of a string
+ */
+
+int _strlen(char *str)
+{
+	int i = 0;
+
+	while (str[i] != '\0')
 		i++;
-	}
+
 	return (i);
 }
-
