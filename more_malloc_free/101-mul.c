@@ -1,87 +1,88 @@
+#include <stdlib.h>
 #include "main.h"
 #include <stdio.h>
-#include <stdlib.h>
 
+int _atoi(char *s);
+int _strlen(char *s);
 /**
- * _puts - prints a string followed by a new newline
- * @str: str to print
+ * main - function with two arguments
+ * @argc: argument count
+ * @argv: argument value
+ *
+ * Description: program that multiplies two positive numbers
+ * Return: value
  */
-
-void _puts(char *str)
+int main(int argc, char *argv[])
 {
-	int a = 0;
+	int count, len1, len2, temp1, temp2, *array, *result;
 
-	while (str[a])
+	if (argc != 3)
 	{
-		_putchar(str[a]);
-		a++;
+		printf("Error\n");
+		exit (98);
+	}
+
+	len1 = _strlen(argv[1]);
+	len2 = _strlen(argv[2]);
+	t_len = len1 + len2 - 1;
+
+	array = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (array == NULL)
+		return (NULL);
+
+	len1 -= 1;
+	len2 -= 1;
+	for (count = 1; argv[count] != '\0', count++)
+	{
+		for (; argv[1][len1]; len1--)
+		{
+			temp1 = argv[1][len1 - 1] - '0';;
+		}
+		for (; argv[2][len2]; len2--)
+		{
+			temp2 = argv[2][len2 - 1] - '0';
+		}
+		for (; array[t_len] > 0
+		if ((temp1 * temp2) > 9)
+			array[
 	}
 }
 
-/**
- * _atoi - converts a string to an int
- * @s: pointer to string
- * Return: converted int
- */
-
-int _atoi(const char *s)
+int _atoi(char *s)
 {
-	int sign = 1;
-	unsigned long int resp = 0, first, a;
+	int i, sign, numb;
 
-	for (first = 0; !(s[first] >= 48 && s[first] <= 57); first++)
-		if (s[first] == '-')
+	i = 0;
+	sign = 1;
+	numb = 0;
+
+	while (s[i] != '\0')
+	{
+		if (s[i] == '-')
 			sign *= -1;
-
-	for (a = first; s[a] >= 48 && s[a] <= 57; a++)
-	{
-		resp *= 10;
-		resp += (s[a] - 48);
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			while (s[i] >= '0' && s[i] <= '9')
+			{
+				numb = (s[i] - '0') * sign + numb * 10;
+				i++;
+			}
+			break;
+		}
+		i++;
 	}
-
-	return (sign * resp);
+	return (numb);
 }
 
-/**
- * print_int - prints an integer
- * @n: int
- * Return: void
- */
-
-void print_int(unsigned long int n)
+int _strlen(char *s)
 {
-	unsigned long int divisor = 1;
-	unsigned long int a, resp;
+	int i;
 
-	for (a = 0; n / divisor > 9; a++, divisor *= 10)
-		;
-
-	for (; divisor >= 1; n %= divisor, divisor /= 10)
+	i = 0;
+	while (*(s + i) != '\0')
 	{
-		resp = n / divisor;
-		_putchar('0' + resp);
+		i++;
 	}
+	return (i);
 }
 
-/**
- * main - returns the product of two positive numbers
- * @argc: number of arguments
- * @argv: arguments
- * Return: 0
- */
-
-int main(int argc, char const *argv[])
-{
-	(void)argc;
-
-	if (argc != 3 || !_atoi(argv[1]) || !_atoi(argv[2]))
-	{
-		_puts("Error\n");
-		exit(98);
-	}
-
-	print_int(_atoi(argv[1]) * _atoi(argv[2]));
-	_putchar('\n');
-
-	return (0);
-}
