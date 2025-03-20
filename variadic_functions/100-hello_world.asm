@@ -1,19 +1,18 @@
-section .data
-    message db "Hello, World", 10  ; The string with a newline character
-    message_len equ $ - message    ; Calculate the length of the string
+global _start
 
 section .text
-    global _start  ; Entry point for the linker
-
 _start:
-    ; syscall: write(int fd, const void *buf, size_t count)
-    mov rax, 1        ; syscall number for sys_write (1)
+    mov rax, 1        ; syscall number for sys_write
     mov rdi, 1        ; file descriptor 1 (stdout)
-    mov rsi, message  ; pointer to the message
-    mov rdx, message_len  ; message length
-    syscall          ; invoke the system call
+    mov rsi, msg      ; pointer to the message
+    mov rdx, msglen   ; message length
+    syscall           ; invoke system call
 
-    ; syscall: exit(int status)
-    mov rax, 60       ; syscall number for sys_exit (60)
-    xor rdi, rdi      ; status 0
-    syscall          ; invoke the system call
+    mov rax, 60       ; syscall number for sys_exit
+    xor rdi, rdi      ; status 0 (EXIT_SUCCESS)
+    syscall           ; invoke system call
+
+section .data
+msg: db "Hello, Holberton", 10
+msglen: equ $ - msg
+
