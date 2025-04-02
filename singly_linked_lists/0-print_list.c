@@ -1,4 +1,7 @@
 #include "lists.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 /**
  * print_list - print as linked list from list
  * @h: h is the list
@@ -19,6 +22,7 @@ size_t print_list(const list_t *h)
 		h = h->next;
 	}
 	return (node);
+}
 
 
 
