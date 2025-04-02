@@ -6,7 +6,7 @@
  */
 size_t list_len(const list_t *h)
 {
-	size count = 0;
+	size_t count = 0;
 
 	while (h)
 	{
@@ -14,3 +14,4 @@ size_t list_len(const list_t *h)
 		count++;
 	}
 	return (count);
+}
